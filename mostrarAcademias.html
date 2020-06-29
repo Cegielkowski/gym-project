@@ -16,6 +16,7 @@
 
     <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
+    <script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script>
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
@@ -114,6 +115,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         $(document).ready(function(){
           $.ajax({
                 type: "GET",
+                crossOrigin: true,
                 url: "localhost:8080/mostrarAcademias",
                 // url: "https://api.github.com/users/cegielkowski/repos",
                 contentType: "application/json; charset=utf-8",
