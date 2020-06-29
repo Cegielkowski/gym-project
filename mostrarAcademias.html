@@ -50,83 +50,14 @@
           <div class="row">
             <div class="col-md-12 text-center heading-wrap">
               <h2>Nossas Academias</h2>
-              <span class="back-text-dark">Academias</span>
             </div>
           </div>
         </div>
       </div>
 
       <div class="container">
-        
         <div class="row no-gutters" id="academias">
-          <div class="col-md-6">
-            <div class="sched d-block d-lg-flex">
-              <div class="bg-image order-2" style="background-image: url('img/img_1_square.jpg');"></div>
-              <div class="text order-1">
-                <h3>Bruce Wayne</h3>
-                <p>Train to lean gains...</p>
-                <p class="sched-time">
-                  <span><span class="fa fa-clock-o"></span> 5:30 PM</span> <br>
-                  <span><span class="fa fa-calendar"></span> April 22, 2018</span> <br>
-                </p>
-                <p><a href="#" class="btn btn-primary btn-sm">Get in touch</a></p>
-                
-              </div>
-              
-            </div>
-
-            <div class="sched d-block d-lg-flex">
-              <div class="bg-image" style="background-image: url('img/img_2_square.jpg');"></div>
-              <div class="text">
-                <h3>Arnold Schawznegger</h3>
-                <p>Train to get heavy gains...</p>
-                <p class="sched-time">
-                  <span><span class="fa fa-clock-o"></span> 5:30 PM</span> <br>
-                  <span><span class="fa fa-calendar"></span> April 22, 2018</span> <br>
-                </p>
-                <p><a href="#" class="btn btn-primary btn-sm">Get in touch</a></p>
-                
-              </div>
-              
-            </div>
-
-          </div>
-
-          <div class="col-md-6">
-            <div class="sched d-block d-lg-flex">
-              <div class="bg-image order-2" style="background-image: url('img/img_4_square.jpg');"></div>
-              <div class="text order-1">
-                <h3>Clark Kent</h3>
-                <p>Train to be stronger...</p>
-                <p class="sched-time">
-                  <span><span class="fa fa-clock-o"></span> 5:30 PM</span> <br>
-                  <span><span class="fa fa-calendar"></span> April 22, 2018</span> <br>
-                </p>
-                <p><a href="#" class="btn btn-primary btn-sm">Get in touch</a></p>
-                
-              </div>
-              
-            </div>
-
-            <div class="sched d-block d-lg-flex">
-              <div class="bg-image" style="background-image: url('img/img_3_square.jpg');"></div>
-              <div class="text">
-                <h3>Barry Allen</h3>
-                <p>Train to be faster...</p>
-                <p class="sched-time">
-                  <span><span class="fa fa-clock-o"></span> 5:30 PM</span> <br>
-                  <span><span class="fa fa-calendar"></span> April 22, 2018</span> <br>
-                </p>
-                <p><a href="#" class="btn btn-primary btn-sm">Get in touch</a></p>
-                
-              </div>
-              
-            </div>
-
-          </div>
         </div>
-        
-
       </div>
 
 
@@ -180,7 +111,18 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/main.js"></script>
 
     <script>
-      /* 
+        $(document).ready(function(){
+          $.ajax({
+                type: "GET",
+                url: "localhost:8080/mostrarAcademias",
+                // url: "https://api.github.com/users/cegielkowski/repos",
+                contentType: "application/json; charset=utf-8",
+                data: "{}",
+                dataType: "json",
+                success: function(data) { RenderResult(data) }
+          });
+        });
+        /* 
       
       id : "1"
       nome : "Academia"
@@ -193,35 +135,22 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
       email : "matheus@gmail.com"
       
       */
-        $(document).ready(function(){
-          $.ajax({
-                type: "GET",
-                // url: "localhost:8080/mostrarAcademias",
-                url: "https://api.github.com/users/cegielkowski",
-                contentType: "application/json; charset=utf-8",
-                data: "{}",
-                dataType: "json",
-                success: function(data) { RenderResult(data) }
-          });
-        });
-  
         function RenderResult(data) {
-            // Fazer foreach  pra renderizar todos dados
-            var htmlToRender = '<div class="sched d-block d-lg-flex">' +
-              '<div class="text order-1">' +
-                '<h3>'  +  data.login + '</h3>' +
-                '<p>Train to lean gains...</p>' +
-                '<p class="sched-time">' +
-                  '<span><span class="fa fa-clock-o"></span> 5:30 PM</span> <br>' +
-                  '<span><span class="fa fa-calendar"></span> April 22, 2018</span> <br>' +
-                '</p><p><a href="#" class="btn btn-primary btn-sm">Get in touch</a></p></div></div>';
-            $('#academias').html(htmlToRender);
-        }
-  
-        function FailureCallBack(result) {
-            alert(result.status + ' ' + result.statusText);
-        }
-        
+          var htmlToRender = '';
+          $.each( data, function( index, value ){
+            console.log(value)
+
+            htmlToRender += '<div>' +
+              '<div>' +
+              '<h3>'  +  data.nome + '</h3>' +
+              '<p> ' + data.rua + data.numero + data.cidade + data.estado +  ' </p>' +
+              '<br><p>' + data.telefone+ '</p>' +
+              '<br><p>' + data.email+ '</p>' +
+            '</p><p><a href="#" class="btn btn-primary btn-sm">Get in touch</a></p></div></div>';
+          });
+
+          $('#academias').html(htmlToRender);
+        }        
     </script>
   </body>
 </html>
