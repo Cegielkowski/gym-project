@@ -50,14 +50,14 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12 text-center heading-wrap">
-              <h2>Nossas Academias</h2>
+              <h2>Alunos da Academia Gym Project</h2>
             </div>
           </div>
         </div>
       </div>
 
       <div class="container">
-        <div class="row no-gutters" id="academias">
+        <div class="row no-gutters" id="alunos">
         </div>
       </div>
 
@@ -114,13 +114,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script>
       $(document).ready(function(){
         var settings = {
-        "url": "http://localhost:8080/mostrarAcademias",
+        "url": "http://localhost:8080/buscaAlunos",
         "method": "GET",
         "timeout": 0,
         };
 
         $.ajax(settings).done(function (response) {
-        console.log(response  )
         RenderResult(response);
         });
       });
@@ -130,19 +129,25 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         response = JSON.parse(response);
         var htmlToRender = '';
         for (var i = 0; i < response.length; i++){
-          console.log(response.length)
+          console.log(response[i].nome)
 
           htmlToRender += '<div class="card">' +
             '<div>' +
-            '<h3>'  +  response[i].nome + '</h3>' +
-            '<p> ' + response[i].rua +" "+ response[i].numero +" "+ response[i].cidade +" "+response[i].estado +  ' </p>' +
-            '<br><p>' + response[i].telefone+ '</p>' +
-            '<br><p>' + response[i].email+ '</p>' +
+            '<h3>'  +  response[i].nome.toString() +" "+ response[i].sobrenome.toString() + '</h3>' +
+            '<br><p> Objetivo: ' + response[i].objetivo.toString()+ '</p>' +
+            '<br><p> Altura: ' + response[i].altura.toString() + '</p>' +
+            '<br><p> Peso: ' + response[i].peso.toString()+ '</p>' +
+            '<br><p> Braço direito: ' + response[i].med_braco_direito.toString()+ '</p>' +
+            '<br><p> Braço esquerdo: ' + response[i].med_braco_esquerdo.toString()+ '</p>' +
+            '<br><p> Perna direita: ' + response[i].med_perna_direita.toString()+ '</p>' +
+            '<br><p> Perna esquerda ' + response[i].med_perna_esquerda.toString()+ '</p>' +
+            '<br><p> Peito ' + response[i].med_peito.toString()+ '</p>' +
+            '<br><p> Abdomen ' + response[i].med_abdomen.toString()+ '</p>' +
           '</p><p><a href="#" class="btn btn-primary btn-sm">Get in touch</a></p></div></div>'+
           '<br>';
         };
 
-        $('#academias').html(htmlToRender);
+        $('#alunos').html(htmlToRender);
       }        
   </script>
   </body>
