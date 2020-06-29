@@ -112,47 +112,37 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/main.js"></script>
 
     <script>
-        $(document).ready(function(){
-          $.ajax({
-                type: "GET",
-                crossOrigin: true,
-                url: "localhost:8080/mostrarAcademias",
-                // url: "https://api.github.com/users/cegielkowski/repos",
-                contentType: "application/json; charset=utf-8",
-                data: "{}",
-                dataType: "json",
-                success: function(data) { RenderResult(data) }
-          });
+      $(document).ready(function(){
+        var settings = {
+        "url": "http://localhost:8080/mostrarAcademias",
+        "method": "GET",
+        "timeout": 0,
+        };
+
+        $.ajax(settings).done(function (response) {
+        console.log(response  )
+        RenderResult(response);
         });
-        /* 
-      
-      id : "1"
-      nome : "Academia"
-      rua : "Rua Teste"
-      numero : "182"
-      cidade : "Bauru"
-      estado : "SP"
-      cep : "17012631"
-      telefone : "998877665"
-      email : "matheus@gmail.com"
-      
-      */
-        function RenderResult(data) {
-          var htmlToRender = '';
-          $.each( data, function( index, value ){
-            console.log(value)
+      });
 
-            htmlToRender += '<div>' +
-              '<div>' +
-              '<h3>'  +  data.nome + '</h3>' +
-              '<p> ' + data.rua + data.numero + data.cidade + data.estado +  ' </p>' +
-              '<br><p>' + data.telefone+ '</p>' +
-              '<br><p>' + data.email+ '</p>' +
-            '</p><p><a href="#" class="btn btn-primary btn-sm">Get in touch</a></p></div></div>';
-          });
+      function RenderResult(response) {
+        console.log(response);
+        response = JSON.parse(response);
+        var htmlToRender = '';
+        for (var i = 0; i < response.length; i++){
+          console.log(response.length)
 
-          $('#academias').html(htmlToRender);
-        }        
-    </script>
+          htmlToRender += '<div>' +
+            '<div>' +
+            '<h3>'  +  response[i].nome + '</h3>' +
+            '<p> ' + response[i].rua +" "+ response[i].numero +" "+ response[i].cidade +" "+response[i].estado +  ' </p>' +
+            '<br><p>' + response[i].telefone+ '</p>' +
+            '<br><p>' + response[i].email+ '</p>' +
+          '</p><p><a href="#" class="btn btn-primary btn-sm">Get in touch</a></p></div></div>';
+        };
+
+        $('#academias').html(htmlToRender);
+      }        
+  </script>
   </body>
 </html>
