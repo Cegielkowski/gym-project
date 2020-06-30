@@ -1258,6 +1258,12 @@ header .navbar .cta-btn a:hover {
 
 }
 
+.input{
+  margin: 0 auto;
+  display:inline-block;
+
+}
+
 #loader {
   position: fixed;
   width: 96px;

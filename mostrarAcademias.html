@@ -56,7 +56,12 @@
         </div>
       </div>
 
+     
       <div class="container">
+        <div>
+          <input type="text" class="input" id="input"><button onclick="RenderSearch()" class="btn btn-primary btn-sm">Search Academy By ID</button>
+          <br>
+        </div>
         <div class="row no-gutters" id="academias">
         </div>
       </div>
@@ -144,6 +149,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
         $('#academias').html(htmlToRender);
       }        
+
+      function RenderSearch () {
+       var id = document.getElementById("input").value
+
+        var settings = {
+        "url": "http://localhost:8080/buscaAcademia?id_academia="+id+"",
+        "method": "GET",
+        "timeout": 0,
+        };
+
+        $.ajax(settings).done(function (search) {
+        console.log(search)
+        RenderResult(search);
+        });
+      }      
   </script>
   </body>
 </html>
