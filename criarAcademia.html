@@ -7,6 +7,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script>
 
 
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -80,121 +81,57 @@
           <div class="col-md-12">
             <div class="form-wrap overlap gym primary element-animate">
               <h2 class="h2">Tell us about your gym</h2>
-              <form action="#">
+              <form id="academia" action="#">
                 <div class="row">
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control" placeholder="Name">
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Name">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" placeholder="Cep">
+                    <input type="text" class="form-control" id="cep" name="cep" placeholder="Cep">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" placeholder="State">
+                    <input type="text" class="form-control" id="estado" name="estado" placeholder="State">
                   </div>
                 </div>                
                 <div class="row">
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" placeholder="City">
+                    <input type="text" class="form-control" id="cidade" name="cidade" placeholder="City">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" placeholder="Address">
+                    <input type="text" class="form-control" id="rua" name="rua" placeholder="Street">
                   </div>
                 </div>
                 <div class="row">
                   <div class="form-group col-md-6">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="number" class="form-control" id="numero" name="numero" placeholder="Number">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <input type="email" class="form-control"  id="email" name="email" placeholder="Email">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="tel" class="form-control" placeholder="Phone">
+                    <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Phone">
                   </div>
                 </div>
                 <h2 class="h2">Hours</h2>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-2">                        
-                          <p style="text-align: center">Sunday</p>                        
+                          <p style="text-align: center">Open / Close</p>                        
                         </div>
                         <div class='col-sm-2'>
-                          <input id="inicio" type="text" class="timepicker">
+                          <input id="abre" name="abre" type="text" class="timepicker">
                         </div>
                         <div class='col-sm-2'>
-                          <input id="fim" type="text" class="timepicker">
+                          <input id="fecha" name="fecha" type="text" class="timepicker">
                         </div>
-                        <div class="col-sm-2">                        
-                            <p style="text-align: center">Monday</p>                        
-                          </div>
-                          <div class='col-sm-2'>
-                            <input type="text" class="timepicker">
-                          </div>
-                          <div class='col-sm-2'>
-                            <input type="text" class="timepicker">
-                          </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-2">                        
-                          <p style="text-align: center">Tuesday</p>                        
-                        </div>
-                        <div class='col-sm-2'>
-                          <input type="text" class="timepicker">
-                        </div>
-                        <div class='col-sm-2'>
-                          <input type="text" class="timepicker">
-                        </div>
-                        <div class="col-sm-2">                        
-                            <p style="text-align: center">Wednesday</p>                        
-                          </div>
-                          <div class='col-sm-2'>
-                            <input type="text" class="timepicker">
-                          </div>
-                          <div class='col-sm-2'>
-                            <input type="text" class="timepicker">
-                          </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-2">                        
-                          <p style="text-align: center">Thursday</p>                        
-                        </div>
-                        <div class='col-sm-2'>
-                          <input type="text" class="timepicker">
-                        </div>
-                        <div class='col-sm-2'>
-                          <input type="text" class="timepicker">
-                        </div>
-                        <div class="col-sm-2">                        
-                            <p style="text-align: center">Friday</p>                        
-                          </div>
-                          <div class='col-sm-2'>
-                            <input type="text" class="timepicker">
-                          </div>
-                          <div class='col-sm-2'>
-                            <input type="text" class="timepicker">
-                          </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-2">                        
-                          <p style="text-align: center">Saturday</p>                        
-                        </div>
-                        <div class='col-sm-2'>
-                          <input type="text" class="timepicker">
-                        </div>
-                        <div class='col-sm-2'>
-                          <input type="text" class="timepicker">
-                        </div>
-                        <div class="col-sm-2">                        
-                            <p style="text-align: center">Holiday</p>                        
-                          </div>
-                          <div class='col-sm-2'>
-                            <input type="text" class="timepicker">
-                          </div>
-                          <div class='col-sm-2'>
-                            <input type="text" class="timepicker">
-                          </div>
                     </div>
                 </div>                
-                <div class="form-group">
-                  <input type="submit" class="btn btn-warning btn-block " value="Register a Gym">
+                <div onclick="doAjax()" class="form-group">
+                  <input class="btn btn-warning btn-block " value="Register a Gym">
                 </div>
               </form>
             </div>
@@ -255,6 +192,38 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/main.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script src="js/logic.js"></script>
+
+    <script>
+      function doAjax() {
+        var settings = {
+        "url": "localhost:8080/criarAcademia",
+        "method": "POST",
+        "crossOrigin": true,
+        "timeout": 0,
+        "data": {
+          "nome": $("#nome").val(),
+          "rua": $("#rua").val(),
+          "numero": $("#numero").val(),
+          "cidade": $("#cidade").val(),
+          "estado": $("#estado").val(),
+          "cep": $("#cep").val(),
+          "telefone": $("#telefone").val(),
+          "email": $("#email").val(),
+          "abre": $("#abre").val(),
+          "fecha": $("#fecha").val(),
+        }
+      };
+      console.log(settings)
+      $.ajax(settings).done(function (response) {
+        alert('Criado com sucesso');
+        window.location.href = "mostrarAcademias.html";
+      });
+      }
+
+
+
+    </script>
+
 
   </body>
 </html>
