@@ -50,18 +50,19 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12 text-center heading-wrap">
-              <h2>Nossos Aparelhos</h2>
+              <h2>Nossas Academias</h2>
             </div>
           </div>
         </div>
       </div>
 
+     
       <div class="container">
         <div>
-            <input type="text" class="input" id="input"><button onclick="RenderSearch()" class="btn btn-primary btn-sm">Search Machine By ID</button>
-            <br>
+          <input type="text" class="input" id="input"><button onclick="RenderSearch()" class="btn btn-primary btn-sm">Search Academy By ID</button>
+          <br>
         </div>
-        <div class="row no-gutters" id="aparelhos">
+        <div class="row no-gutters" id="academias">
         </div>
       </div>
 
@@ -118,7 +119,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script>
       $(document).ready(function(){
         var settings = {
-        "url": "http://localhost:8080/mostrarAparelhos",
+        "url": "http://localhost:8080/mostrarAcademias",
         "method": "GET",
         "timeout": 0,
         };
@@ -139,20 +140,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
           htmlToRender += '<div class="card">' +
             '<div>' +
             '<h3>'  +  response[i].nome + '</h3>' +
-            '<br><p> Musculos: ' + response[i].musculo+ '</p>' +
-            '<br><p> Identificador: ' + response[i].identificacao+ '</p>' +
+            '<p> Endereço: ' + response[i].rua +" "+ response[i].numero +" "+ response[i].cidade +" "+response[i].estado +  ' </p>' +
+            '<br><p> Telefone: ' + response[i].telefone+ '</p>' +
+            '<br><p> Email: ' + response[i].email+ '</p>' +
           '</p><p><a href="#" class="btn btn-primary btn-sm">Get in touch</a></p></div></div>'+
           '<br>';
         };
 
-        $('#aparelhos').html(htmlToRender);
-      }
+        $('#academias').html(htmlToRender);
+      }        
 
       function RenderSearch () {
        var id = document.getElementById("input").value
 
         var settings = {
-        "url": "http://localhost:8080/buscaAparelho?id_aparelho="+id+"",
+        "url": "http://localhost:8080/buscaAcademia?id_academia="+id+"",
         "method": "GET",
         "timeout": 0,
         };
@@ -161,8 +163,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         console.log(search)
         RenderResult(search);
         });
-      }  
-
+      }      
   </script>
   </body>
 </html>
