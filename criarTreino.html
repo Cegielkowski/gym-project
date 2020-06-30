@@ -65,7 +65,7 @@
         <div class="container">
           <div class="row slider-text align-items-center justify-content-center">
             <div class="col-md-8 text-center col-sm-12 element-animate">
-              <h1>Registre seu exercicio</h1>
+              <h1>Registre seu treino</h1>
             </div>
           </div>
         </div>
@@ -80,27 +80,29 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-wrap overlap gym primary element-animate">
-              <h2 class="h2">Nos conte sobre o exercicio</h2>
+              <h2 class="h2">Nos conte sobre o treino</h2>
               <form id="academia" action="#">
                 <div class="row">
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect2">Example multiple select</label>
+                        <select multiple class="form-control" id="id_exercicio" name="id_exercicio[]">
+                            <option value="1">Exercicio 1</option>
+                            <option value="2">Exercicio 2</option>
+                            <option value="3">Exercicio 3</option>
+                            <option value="4">Exercicio 4</option>
+                        </select>
+                    </div>
                   </div>
                   <div class="form-group col-md-12">
-                    <input type="number" class="form-control" id="series" name="series" placeholder="Series">
+                    <input type="date" class="form-control" id="dia" name="dia" placeholder="Dia">
                   </div>
                   <div class="form-group col-md-12">
-                    <input type="number" class="form-control" id="repeticoes" name="repeticoes" placeholder="Repeticoes">
-                  </div>
-                  <div class="form-group col-md-12">
-                    <input type="number" class="form-control" id="descanso" name="descanso" placeholder="Descanso">
-                  </div>
-                  <div class="form-group col-md-12">
-                    <input type="number" class="form-control" id="maquina" name="maquina" placeholder="ID da maquina">
+                    <input type="number" class="form-control" id="id_aluno" name="id_aluno" placeholder="ID do aluno">
                   </div>
                 </div>           
                 <div onclick="doAjax()" class="form-group">
-                  <input class="btn btn-warning btn-block " value="Cadastre o Exercicio">
+                  <input class="btn btn-warning btn-block " value="Cadastre o Treino">
                 </div>
               </form>
             </div>
@@ -164,17 +166,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script>
       function doAjax() {
         var settings = {
-          "url": "localhost:8080/criarExercicio",
-          "method": "POST",
-          "crossOrigin": true,
-          "timeout": 0,
-          "data": {
-            "nome": $("#nome").val(),
-            "series": $("#series").val(),
-            "repeticoes": $("#repeticoes").val(),
-            "descanso": $("#descanso").val(),
-            "maquina": $("#maquina").val(),
-          }
+        "url": "localhost:8080/criarTreino",
+        "method": "POST",
+        "crossOrigin": true,
+        "timeout": 0,
+        "data": {
+            "id_aluno": $("#id_aluno").val(),
+            "dia": $("#dia").val(),
+            "id_exercicio[]": $("#id_exercicio").val()
+        }
         };
 
       console.log(settings)
