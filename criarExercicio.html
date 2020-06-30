@@ -6,10 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.ajax-cross-origin.min.js"></script>
+
 
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
+      <!--Import materialize.css-->
+   <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
     <link rel="stylesheet" href="css/magnific-popup.css">
 
@@ -60,7 +65,7 @@
         <div class="container">
           <div class="row slider-text align-items-center justify-content-center">
             <div class="col-md-8 text-center col-sm-12 element-animate">
-              <h1>Sign up</h1>
+              <h1>Registre seu exercicio</h1>
             </div>
           </div>
         </div>
@@ -74,72 +79,28 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="form-wrap overlap primary element-animate">
-              <h2 class="h2">Become A Member</h2>
-              <form action="#">
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Name">
-                </div>                
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Surname">
-                </div>
-                <div class="form-group">
-                  <input type="tel" class="form-control" placeholder="Phone">
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control" placeholder="Email">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Password">
-                </div>
-                <h2 class="h2">Personal information</h2>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Zip Code">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="State">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="City">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Address">
-                </div>
-                <div class="form-group">
-                  <div class="select-wrap">
-                    <span class="ion-ios-arrow-down select-arrow-icon"></span>
-                    <select name="" id="" class="form-control">
-                      <option value="">Select your gender</option>
-                      <option value="M">Male</option>
-                      <option value="F">Female</option>
-                    </select>
+            <div class="form-wrap overlap gym primary element-animate">
+              <h2 class="h2">Nos conte sobre o exercicio</h2>
+              <form id="academia" action="#">
+                <div class="row">
+                  <div class="form-group col-md-12">
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
                   </div>
-                </div>
-                <h2 class="h2">Type</h2>
-                <div class="form-group">
-                  <div class="select-wrap">
-                    <span class="ion-ios-arrow-down select-arrow-icon"></span>
-                    <select id="type-person" class="form-control">
-                      <option value="">Select your type</option>
-                      <option value="personal">Personal Trainer</option>
-                      <option value="chicken">Visitor</option>
-                    </select>
+                  <div class="form-group col-md-12">
+                    <input type="number" class="form-control" id="series" name="series" placeholder="Series">
                   </div>
-                </div>
-                <div id="for-personal" style="display: none" class="form-group">
-                  <input type="text" class="form-control" placeholder="Experience time">
-                  <input type="text" class="form-control" placeholder="Specialization">
-                </div>
-                <div id="for-chicken" style="display: none" class="form-group">
-                  <input type="text" class="form-control" placeholder="Chest Measure">
-                  <input type="text" class="form-control" placeholder="Right Arm Measure">
-                  <input type="text" class="form-control" placeholder="Left Arm Measure">
-                  <input type="text" class="form-control" placeholder="Right Leg Measure">
-                  <input type="text" class="form-control" placeholder="Left Leg Measure">
-                  <input type="text" class="form-control" placeholder="Abs Measure">
-                </div>
-                <div class="form-group">
-                  <input type="submit" class="btn btn-warning btn-block py-3" value="Create an account">
+                  <div class="form-group col-md-12">
+                    <input type="number" class="form-control" id="repeticoes" name="repeticoes" placeholder="Repeticoes">
+                  </div>
+                  <div class="form-group col-md-12">
+                    <input type="number" class="form-control" id="descanso" name="descanso" placeholder="Descanso">
+                  </div>
+                  <div class="form-group col-md-12">
+                    <input type="number" class="form-control" id="maquina" name="maquina" placeholder="ID da maquina">
+                  </div>
+                </div>           
+                <div onclick="doAjax()" class="form-group">
+                  <input class="btn btn-warning btn-block " value="Cadastre o Aparelho">
                 </div>
               </form>
             </div>
@@ -147,6 +108,9 @@
         </div>
       </div>
     </section>
+
+
+    
 
     <footer class="site-footer" role="contentinfo">
       <div class="container">
@@ -195,7 +159,35 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/magnific-popup-options.js"></script>
 
     <script src="js/main.js"></script>
-    <script src="js/logic.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+
+    <script>
+      function doAjax() {
+        var settings = {
+          "url": "localhost:8080/criarExercicio",
+          "method": "POST",
+          "crossOrigin": true,
+          "timeout": 0,
+          "data": {
+            "nome": $("#nome").val(),
+            "series": $("#series").val(),
+            "repeticoes": $("#repeticoes").val(),
+            "descanso": $("#descanso").val(),
+            "maquina": $("#maquina").val(),
+          }
+        };
+
+      console.log(settings)
+      $.ajax(settings).done(function (response) {
+        alert('Criado com sucesso');
+        window.location.href = "mostrarExercicios.html";
+      });
+      }
+
+
+
+    </script>
+
 
   </body>
 </html>
