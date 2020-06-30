@@ -58,7 +58,11 @@
 
       <div class="container">
         <div>
-            <input type="text" class="input" id="input_id"><input type="text" class="input" id="input_type"><button onclick="RenderSearch()" class="btn btn-primary btn-sm">Search User By ID</button>
+            <input type="text" class="input" id="input_id"><select class="btn btn-primary btn-sm" name="input2" id="input_type">
+                <option value="aluno">Aluno</option>
+                <option value="personal">Personal</option>
+              </select><br><br>
+              <button onclick="RenderSearch()" class="btn btn-primary btn-sm">Search User By ID</button>
              <br>
         </div>
         <div class="row no-gutters" id="alunos">
@@ -158,7 +162,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
       function RenderSearch () {
         var id = document.getElementById("input_id").value
         var type = document.getElementById("input_type").value
-
+        console.log(type)
         var settings = {
         "url": "http://localhost:8080/buscaUsuario?id_usuario="+id+"&tipo="+type+"",
         "method": "GET",
