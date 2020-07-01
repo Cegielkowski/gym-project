@@ -78,37 +78,40 @@
               <h2 class="h2">Become A Member</h2>
               <form action="#">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Name">
+                  <input id="nome" type="text" class="form-control" placeholder="Name">
                 </div>                
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Surname">
+                  <input id="sobrenome" type="text" class="form-control" placeholder="Surname">
                 </div>
                 <div class="form-group">
-                  <input type="tel" class="form-control" placeholder="Phone">
+                  <input id="telefone" type="tel" class="form-control" placeholder="Phone">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" placeholder="Email">
+                  <input id="email" type="email" class="form-control" placeholder="Email">
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Password">
+                  <input id="senha" type="password" class="form-control" placeholder="Password">
                 </div>
                 <h2 class="h2">Personal information</h2>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Zip Code">
+                  <input id="cep" type="text" class="form-control" placeholder="Zip Code">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="State">
+                  <input id="estado" type="text" class="form-control" placeholder="State">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="City">
+                  <input  id="cidade" type="text" class="form-control" placeholder="City">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Address">
+                  <input id="rua" type="text" class="form-control" placeholder="Address">
+                </div>
+                <div class="form-group">
+                  <input id="numero" type="text" class="form-control" placeholder="Number">
                 </div>
                 <div class="form-group">
                   <div class="select-wrap">
                     <span class="ion-ios-arrow-down select-arrow-icon"></span>
-                    <select name="" id="" class="form-control">
+                    <select name="sexo" id="sexo" class="form-control">
                       <option value="">Select your gender</option>
                       <option value="M">Male</option>
                       <option value="F">Female</option>
@@ -119,27 +122,30 @@
                 <div class="form-group">
                   <div class="select-wrap">
                     <span class="ion-ios-arrow-down select-arrow-icon"></span>
-                    <select id="type-person" class="form-control">
+                    <select id="tipo" class="form-control">
                       <option value="">Select your type</option>
                       <option value="personal">Personal Trainer</option>
-                      <option value="chicken">Visitor</option>
+                      <option value="aluno">Visitor</option>
                     </select>
                   </div>
                 </div>
                 <div id="for-personal" style="display: none" class="form-group">
-                  <input type="text" class="form-control" placeholder="Experience time">
-                  <input type="text" class="form-control" placeholder="Specialization">
+                  <input type="text" id="tempo_experiencia" class="form-control" placeholder="Experience time">
+                  <input type="text" id="especializacao" class="form-control" placeholder="Specialization">
                 </div>
                 <div id="for-chicken" style="display: none" class="form-group">
-                  <input type="text" class="form-control" placeholder="Chest Measure">
-                  <input type="text" class="form-control" placeholder="Right Arm Measure">
-                  <input type="text" class="form-control" placeholder="Left Arm Measure">
-                  <input type="text" class="form-control" placeholder="Right Leg Measure">
-                  <input type="text" class="form-control" placeholder="Left Leg Measure">
-                  <input type="text" class="form-control" placeholder="Abs Measure">
+                  <input type="text" id="altura" class="form-control" placeholder="Height">
+                  <input type="text" id="objetivo" class="form-control" placeholder="Objective">
+                  <input type="text" id="peso" class="form-control" placeholder="Weight">
+                  <input type="text" id="med_peito" class="form-control" placeholder="Chest Measure">
+                  <input type="text" id="med_braco_direito" class="form-control" placeholder="Right Arm Measure">
+                  <input type="text" id="med_braco_esquerdo" class="form-control" placeholder="Left Arm Measure">
+                  <input type="text" id="med_perna_esquerda" class="form-control" placeholder="Right Leg Measure">
+                  <input type="text" id="med_perna_direita" class="form-control" placeholder="Left Leg Measure">
+                  <input type="text" id="med_abdomen" class="form-control" placeholder="Abs Measure">
                 </div>
                 <div class="form-group">
-                  <input type="submit" class="btn btn-warning btn-block py-3" value="Create an account">
+                  <input onclick="doAjax()" class="btn btn-warning btn-block py-3" value="Create an account">
                 </div>
               </form>
             </div>
@@ -184,7 +190,48 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- loader -->
     <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
+    <script>
+      function doAjax() {
+      var settings = {
+        "url": "http://localhost:8080/criarUsuario",
+        "method": "POST",
+        "timeout": 0,
+        "data": {
+          "nome": $("#nome").val(),
+          "sobrenome": $("#sobrenome").val(),
+          "email": $("#email").val(),
+          "senha": $("#senha").val(),
+          "telefone": $("#telefone").val(),
+          "rua": $("#rua").val(),
+          "numero": $("#numero").val(),
+          "cep": $("#cep").val(),
+          "cidade": $("#cidade").val(),
+          "estado": $("#estado").val(),
+          "sexo": $("#sexo").val(),
+          "tipo": $("#tipo").val(),
+          "especializacao": $("#especializacao").val(),
+          "tempo_experiencia": $("#tempo_experiencia").val(),
+          "objetivo": $("#objetivo").val(),
+          "peso": $("#peso").val(),
+          "altura": $("#altura").val(),
+          "med_braco_direito": $("#med_braco_direito").val(),
+          "med_braco_esquerdo": $("#med_braco_esquerdo").val(),
+          "med_perna_direita": $("#med_perna_direita").val(),
+          "med_perna_esquerda": $("#med_perna_esquerda").val(),
+          "med_peito": $("#med_peito").val(),
+          "med_abdomen": $("#med_abdomen").val()
+        }
+      };
+      console.log(settings)
+      $.ajax(settings).done(function (response) {
+        alert('Criado com sucesso');
+        window.location.href = "index.html";
+      });
+      }
 
+
+
+    </script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
